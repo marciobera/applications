@@ -9,8 +9,10 @@
  */
 angular.module('elotechApp')
   .controller('ViewrepositoryCtrl', function ($http, $route, DSP_URL) {
+    
     var self = this;
-    self.this = {name: $route.current.params.id};
+
+    self.this = {name: ''};
     self.loading = false;
     self.privacity = ['Público', 'Privado'];
 
@@ -32,6 +34,7 @@ angular.module('elotechApp')
 
     (function () {
     	_getRepositoryById();
+        self.this.name = $route.current.params.id;
     });
     $(function () {
 	  $('[data-toggle="tooltip"]').tooltip();

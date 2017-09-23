@@ -13,8 +13,8 @@ angular.module('elotechApp')
     var self = this;
 
     $scope.$on('$routeChangeSuccess', function () {
-		self.route = $route.current.controllerAs;
-	});
+  		self.route = $route.current.controllerAs;
+  	});
 
 	// run
     (function () {
