@@ -25,6 +25,10 @@ angular
         controller: 'RepositoriesCtrl',
         controllerAs: 'repositories'
       })
+      .when('/repositories/:id', {
+        templateUrl: 'views/viewrepository.html',
+        controller: 'ViewrepositoryCtrl',
+        controllerAs: 'viewRepository'
       })
       .otherwise({
         redirectTo: '/'
