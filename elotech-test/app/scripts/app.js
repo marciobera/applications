@@ -20,6 +20,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/repositories', {
+        templateUrl: 'views/repositories.html',
+        controller: 'RepositoriesCtrl',
+        controllerAs: 'repositories'
+      })
       })
       .otherwise({
         redirectTo: '/'

@@ -1,0 +1,35 @@
+<div ng-controller="RepositoriesCtrl as repositories">
+
+	<ol class="breadcrumb">
+	  <li><a href="#/">Home</a></li>
+	  <li class="active">Repositórios</li>
+	</ol>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th width="30%">Nome</th>
+				<th width="30%">Criado por</th>
+				<th width="30%">Avatar</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="repository in repositories.all" ng-if="!repositories.loading && repositories.all.length > 0">
+				<td>{{repository.name}}</td>
+				<td>{{repository.owner.login}}</td>
+				<td><img ng-src="{{repository.owner.avatar_url}}" width="50" class="thumbnail"></td>
+				<td>
+					<a href="#/repositories/{{repository.name}}" class="btn btn-default"><i class="fa fa-info-circle"></i> Informações</a>
+				</td>
+			</tr>
+			<tr ng-repeat="repository in repositories.all" ng-if="!repositories.loading && repositories.all.length == 0">
+				<td colspan="4" align="center" class="text-muted"><strong>nenhum repositório encontrado.</strong></td>
+			</tr>
+			<tr ng-if="repositories.loading">
+				<td colspan="4" align="center" class="text-muted"><i class="fa fa-spinner fa-spin"></i> <em>buscando repositórios.</em></td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
