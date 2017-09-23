@@ -8,7 +8,7 @@
  * Controller of the elotechApp
  */
 angular.module('elotechApp')
-  .controller('MainCtrl', function ($route, $scope) {
+  .controller('MainCtrl', function ($route, $scope, $http) {
     
     var self = this;
 
@@ -18,7 +18,7 @@ angular.module('elotechApp')
 
 	// run
     (function () {
-		$http.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json';
+  		$http.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json';
     });
 
   });
