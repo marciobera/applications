@@ -8,10 +8,17 @@
  * Controller of the elotechApp
  */
 angular.module('elotechApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($route, $scope) {
+    
+    var self = this;
+
+    $scope.$on('$routeChangeSuccess', function () {
+		self.route = $route.current.controllerAs;
+	});
+
+	// run
+    (function () {
+		$http.defaults.headers.common['Accept'] = 'application/vnd.github.v3+json';
+    });
+
   });
