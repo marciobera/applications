@@ -11,6 +11,7 @@
 angular
   .module('elotechApp', [
     'ngRoute',
+    'angularMoment',
     'configApp'
   ])
   .config(function ($routeProvider, $locationProvider) {
