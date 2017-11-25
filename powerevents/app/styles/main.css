@@ -10,12 +10,56 @@ body {
   background: #333;
   color:#fff;
 }
+a,.text-default{
+  color:#5bc0de;
+}
+a:hover img{
+  opacity: 0.7;
+}
+a:hover{
+  color:#1b6d85;
+}
 
 .navbar{
   border-radius: 0px;
 }
 .jumbotron{
   background: #444;
+}
+.main-search input,.main-search button{
+  background:#5bc0de;
+  color:#fff;
+  border-color:#1b6d85;
+}
+.main-search input{
+  border-right:0px;
+}
+.main-search input::-webkit-input-placeholder{
+  color:#1b6d85;
+}
+.main-search input:focus{
+  box-shadow: inset 0 0px 0px, 0 0 0px;
+  border-color:#1b6d85;
+  border-right:0px;
+}
+.jumbotron .main-search .btn{
+  padding:7px 14px;
+  border-left:0px;
+  color:#1b6d85;
+}
+.jumbotron .main-search .btn:hover,.jumbotron .main-search .btn:active, .btn.btn-default{
+  box-shadow: 0 0px;
+  background:#5bc0de;
+  color:#fff;
+  border-color:#1b6d85;
+}
+.btn.btn-default:hover{
+  background:#2b6f85;
+}
+.btn.btn-default:active{
+  background:#1b6385;
+  color:#fff;
+  border-color:#0b6d85;
 }
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -88,4 +132,26 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+}
+ul.pagination{
+  display: inline-block;
+}
+ul.pagination li a{
+  background-color:#5bc0de;
+  color:#1b6d85;
+  border-color:#1b6d85;
+}
+ul.pagination li a:hover{
+
+  background-color:#1b6d85;
+  color:#5bc0de;
+  border-color:#1b6d85;
+}
+ul.pagination li.disabled a, ul.pagination li.disabled a:hover, ul.pagination li.active a, ul.pagination li.active a:hover{
+  border-color:#1b6d85;
+  color:#1b6d85;
+  background-color:#eee;
+}
+.navbar-brand img{
+  margin-top:-10px;
 }
