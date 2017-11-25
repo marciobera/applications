@@ -40,13 +40,13 @@
           <iframe ng-src="{{main.artist.content.facebook_iframe_url}}" width="*" height="40px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
 
         </div>  
-        <div class="col-md-12">
-        
+        <div class="col-md-12 text-center">
           <a ng-if="main.artist.content.facebook_page_url" href="{{main.artist.content.facebook_page_url}}" class="btn btn-primary" target="_blank"><i class="fa fa-facebook"></i></a> 
-        &nbsp; &nbsp; 
-        <button class="btn btn-default" ng-click="main.getNextEvents()" target="_blank"><i class="fa fa-calendar"></i> See next events</button>
-        &nbsp; &nbsp; 
-        <a href="{{main.artist.content.url}}" target="_blank">See in<img src="images/bandsintown-logo.svg" height="30px"></a>
+          <span class="hidden-xs">&nbsp; &nbsp;</span>
+          <button class="btn btn-default" ng-click="main.getNextEvents()" target="_blank"><i class="fa fa-calendar"></i> See next events</button>
+          <span class="hidden-xs">&nbsp; &nbsp;</span>
+          <br class="hidden-md hidden-lg">
+          <a href="{{main.artist.content.url}}" target="_blank">See in<img src="images/bandsintown-logo.svg" height="30px"></a>
         </div>
       </div>
 
@@ -62,20 +62,27 @@
         <table class="table" ng-if="main.artist.events.length > 0">
           <thead>
             <tr>
-              <th>City</th>
-              <th>Country</th>
-              <th>Date</th>
-              <th>Venue</th>
+              <th class="hidden-xs hidden-sm">City</th>
+              <th class="hidden-xs hidden-sm">Country</th>
+              <th class="hidden-xs hidden-sm">Date</th>
+              <th class="hidden-xs hidden-sm">Venue</th>
+              <th class="hidden-md hidden-lg">Info</th>
               <th width="90">Tickets</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <tr dir-paginate="event in main.artist.events | itemsPerPage: 10" pagination-id="cust">
-              <td>{{event.venue.city}}</td>
-              <td>{{event.venue.country}}</td>
-              <td>{{event.datetime | amCalendar}}</td>
-              <td><a href="https://www.google.com/maps/?q={{event.venue.latitude}},{{event.venue.longitude}}" target="_blank"><i class="fa fa-map-marker"></i></a> {{event.venue.name}}
+              <td class="hidden-xs hidden-sm">{{event.venue.city}}</td>
+              <td class="hidden-xs hidden-sm">{{event.venue.country}}</td>
+              <td class="hidden-xs hidden-sm">{{event.datetime | amCalendar}}</td>
+              <td class="hidden-xs hidden-sm"><a href="https://www.google.com/maps/?q={{event.venue.latitude}},{{event.venue.longitude}}" target="_blank"><i class="fa fa-map-marker"></i></a> {{event.venue.name}}
+              </td>
+              <td class="hidden-md hidden-lg">
+                <strong>City:</strong> {{event.venue.city}}<br>
+                <strong>Country:</strong> {{event.venue.country}}<br>
+                <strong>Date:</strong> {{event.datetime | amCalendar}}<br>
+                <strong>Venue:</strong> <a href="https://www.google.com/maps/?q={{event.venue.latitude}},{{event.venue.longitude}}" target="_blank"><i class="fa fa-map-marker"></i></a> {{event.venue.name}}
               </td>
               <td>
                 <div ng-if="event.offers.length == 0"><small>Unavailable</small></div>
