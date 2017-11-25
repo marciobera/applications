@@ -54,17 +54,56 @@
       
       
     </div>
+    <div class="col-md-12">
+      <div ng-if="main.artist.events.length > 0">
+      <br>
+      <h3 class="text-default text-center"><i class="fa fa-calendar"></i> Next events of {{main.artist.content.name}}</h3>
+      <br>
+        <table class="table" ng-if="main.artist.events.length > 0">
+          <thead>
+            <tr>
+              <th>City</th>
+              <th>Country</th>
+              <th>Date</th>
+              <th>Venue</th>
+              <th width="90">Tickets</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr dir-paginate="event in main.artist.events | itemsPerPage: 10" pagination-id="cust">
+              <td>{{event.venue.city}}</td>
+              <td>{{event.venue.country}}</td>
+              <td>{{event.datetime | amCalendar}}</td>
+              <td>{{event.venue.name}}</td>
+              <td>
+                <div ng-repeat="offer in event.offers">
+                  <a href="{{offer.url}}" target="_blank" ng-if="offer.status == 'available'"><i class="fa fa-ticket" aria-hidden="true"></i>&nbsp;{{offer.type}}</a>
+                </div>
+              </td>
+              <td><a href="{{event.url}}" target="_blank"><i class="fa fa-info-circle"></i></a></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="6" class="text-center"><dir-pagination-controls pagination-id="cust"></dir-pagination-controls></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
   <div class="col-md-12">
     <br>
     <div class="alert alert-{{main.artist.error.type}}" ng-if="main.artist.error.code" ng-bind-html="main.artist.error.message"></div>
   </div>
   
 </div>
-<!-- <pre>{{main.artist.events | json}}</pre> -->
+
 <div ng-if="main.loading" class="text-center">
   <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>
 </div>
-  <!-- <pre>{{main.artist.content | json}}</pre> -->
+
 
 <div class="row marketing" ng-if="!main.artist.content.id">
   <h4>What is this?</h4>

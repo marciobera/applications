@@ -64,6 +64,31 @@ angular.module('eventsApp')
         main.artist.error.message = '<strong>Sorry</strong>, <em>' + main.artist.name + '</em> was not found. :(';
       });
     }
-    main.clearSearch(0);
 
+    main.getNextEvents = function(){
+      main.loading = true;
+      main.artist.events = [];
+      if(!main.artist.name){
+        main.artist.error.code = 1;
+        main.artist.error.type = 'warning';
+        main.artist.error.message = '<strong>Please</strong>, set the artist name.';
+        main.loading = false;
+        return false;
+      }
+      $http.get(url + main.artist.name + "/events", config).
+      then(function(response){
+        console.log(response);
+        main.loading = false;
+        if(response.data.length > 0){
+          main.artist.events = response.data;
+        }else{
+          main.artist.error.code = 1;
+          main.artist.error.type = 'warning';
+          main.artist.error.message = '<strong>Sorry</strong>, no events were found for this artist. :(';
+        }
+      });
+    }
+
+    main.clearSearch(0);
+    
   });
