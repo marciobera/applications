@@ -75,8 +75,10 @@
               <td>{{event.venue.city}}</td>
               <td>{{event.venue.country}}</td>
               <td>{{event.datetime | amCalendar}}</td>
-              <td>{{event.venue.name}}</td>
+              <td><a href="https://www.google.com/maps/?q={{event.venue.latitude}},{{event.venue.longitude}}" target="_blank"><i class="fa fa-map-marker"></i></a> {{event.venue.name}}
+              </td>
               <td>
+                <div ng-if="event.offers.length == 0"><small>Unavailable</small></div>
                 <div ng-repeat="offer in event.offers">
                   <a href="{{offer.url}}" target="_blank" ng-if="offer.status == 'available'"><i class="fa fa-ticket" aria-hidden="true"></i>&nbsp;{{offer.type}}</a>
                 </div>
@@ -93,6 +95,7 @@
       </div>
     </div>
   </div>
+
   <div class="col-md-12">
     <br>
     <div class="alert alert-{{main.artist.error.type}}" ng-if="main.artist.error.code" ng-bind-html="main.artist.error.message"></div>
