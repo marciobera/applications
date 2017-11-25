@@ -8,11 +8,19 @@
  * Controller of the eventsApp
  */
 angular.module('eventsApp')
-  .controller('MainCtrl', function ($http, $sce, $location) {
+  .controller('MainCtrl', function ($http, $sce, $location, $rootScope) {
   	var main = this;
     main.loading = false;
 
     main.artist = {name: ''};
+
+    main.currentController = null;
+
+    $rootScope.$on('$routeChangeStart', function(event, next){
+      
+      main.currentController = next.$$route.controllerAs;
+
+    });
 
     var url = "https://rest.bandsintown.com/artists/";
 
@@ -30,6 +38,7 @@ angular.module('eventsApp')
         main.artist.name = '';
       }
     }
+
     main.getArtist = function(){
       main.loading = true;
       main.clearSearch(0);
