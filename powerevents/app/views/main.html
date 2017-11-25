@@ -103,9 +103,9 @@
     </div>
   </div>
 
-  <div class="col-md-12">
+  <div class="col-md-12" ng-if="main.artist.error.code">
     <br>
-    <div class="alert alert-{{main.artist.error.type}}" ng-if="main.artist.error.code" ng-bind-html="main.artist.error.message"></div>
+    <div class="alert alert-{{main.artist.error.type}}" ng-bind-html="main.artist.error.message"></div>
   </div>
   
 </div>
@@ -118,7 +118,7 @@
 <div class="row marketing" ng-if="!main.artist.content.id">
   <h4>What is this?</h4>
   <p>
-    PowerEvents is a power application that show you details about your favorite artist.
+    PowerEvents is a powerful application that show you details about your favorite artist.
   </p>
 
   <h4>And about the informations?</h4>
