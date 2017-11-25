@@ -173,6 +173,12 @@ angular.module('eventsApp')
       });
     }
 
+    main._removeSearch = function(index){
+      // console.log(main.lastArtists[index]);
+      $cookies.remove(main.lastArtists[index].input);
+      main.lastArtists.splice(index, 1);
+    }
+
     main.clearSearch(0);
 
   });

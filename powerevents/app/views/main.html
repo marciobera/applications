@@ -133,14 +133,3 @@
   <p>It's a free aplication. Enjoy it! =)</p>
 </div>
 
-<div class="row marketing" ng-if="main.lastArtists.length > 0">
-<h3>Latest searches</h3>
-<hr>
-  <div  ng-repeat="artist in main.lastArtists track by $index" class="col-lg-3">
-    <a href="#" ng-click="main.artist.name = artist.input;main.getArtist();">
-      <img ng-src="{{artist.thumb_url}}" class="img-thumbnail">
-      <p><strong>{{artist.name}}</strong></p>
-    </a>
-    <br>
-  </div>
-</div>
