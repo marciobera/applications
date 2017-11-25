@@ -8,10 +8,4 @@
  * Controller of the eventsApp
  */
 angular.module('eventsApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
   });
