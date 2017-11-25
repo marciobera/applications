@@ -32,11 +32,21 @@ angular.module('eventsApp')
 
     // methods
 
-    main.clearSearch = function(name = false){
-      main.artist = {name: main.artist.name, content: [], events: [], error: {code: 0, type: '', message: ''} };
+    main.clearSearch = function(name) {
       if(name){
         main.artist.name = '';
       }
+      main.artist = {
+        name: main.artist.name,
+        content: [],
+        events: [],
+        error: 
+          {
+            code: 0,
+            type: '',
+            message: ''
+          }
+        };
     }
 
     main.getArtist = function(){
@@ -90,5 +100,5 @@ angular.module('eventsApp')
     }
 
     main.clearSearch(0);
-    
+
   });
