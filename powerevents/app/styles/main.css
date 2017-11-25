@@ -27,7 +27,8 @@ a:hover{
   border-radius: 0px;
 }
 .jumbotron{
-  background: #444;
+  background: #333;
+  box-shadow: 0px 0px 50px #000;
 }
 .main-search input,.main-search button{
   background:#5bc0de;
