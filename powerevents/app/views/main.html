@@ -8,8 +8,14 @@
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
       <form ng-submit="main.getArtist()">
-        <div class="input-group main-search">
-          <input type="text" class="form-control input-lg text-center" ng-change="main.getArtist()" ng-model-options="{ debounce: 500 }" ng-model="main.artist.name" placeholder="Enter the name of your artist or band">
+        <div class="input-group main-search hidden-xs">
+          <input type="text" class="form-control input-lg text-center" ng-change="main.getArtist()" ng-model-options="{ debounce: 1000 }" ng-model="main.artist.name" placeholder="Enter the name of your artist or band">
+          <span class="input-group-btn">
+            <button class="btn btn-default" ng-click="main.getArtist()" type="button"><i class="glyphicon glyphicon-search"></i></button>
+          </span>
+        </div>
+        <div class="input-group main-search hidden-sm hidden-md hidden-lg">
+          <input type="text" class="form-control input-lg text-center" ng-change="main.getArtist()" ng-model-options="{ debounce: 5000 }" ng-model="main.artist.name" placeholder="Enter the name of your artist or band">
           <span class="input-group-btn">
             <button class="btn btn-default" ng-click="main.getArtist()" type="button"><i class="glyphicon glyphicon-search"></i></button>
           </span>
@@ -24,7 +30,6 @@
 
 <div class="row marketing">
   <div ng-if="main.artist.content.id">
-
     <div class="col-sm-4">
       <img ng-src="{{main.artist.content.image_url}}" class="img-responsive img-thumbnail hidden-sm hidden-md hidden-lg">
       <img ng-src="{{main.artist.content.thumb_url}}" class="img-responsive img-thumbnail hidden-xs">
