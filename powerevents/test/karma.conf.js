@@ -32,6 +32,8 @@ module.exports = function(config) {
       'bower_components/moment/moment.js',
       'bower_components/angular-moment/angular-moment.js',
       'bower_components/angularUtils-pagination/dirPagination.js',
+      'bower_components/slick-carousel/slick/slick.js',
+      'bower_components/angular-slick-carousel/dist/angular-slick.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

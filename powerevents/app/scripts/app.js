@@ -17,12 +17,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularMoment',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'slickCarousel'
   ])
   .config(function ($routeProvider, $httpProvider) {
-
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
     $routeProvider
       .when('/', {

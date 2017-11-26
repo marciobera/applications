@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/slick-carousel/slick/slick.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -52,16 +53,17 @@
     <div class="container">
     <div ng-view=""></div>
 
-    <div class="row marketing" ng-if="main.lastArtists.length > 0">
+    <div class="marketing" ng-if="main.lastArtists.length > 0">
       <h3>Latest searches</h3>
       <hr>
-        <div  ng-repeat="artist in main.lastArtists track by $index" class="col-lg-3">
-          <a href="#!/" ng-click="main.artist.name = artist.input;main.getArtist();">
+      <slick class="row" settings="main.slickConfig" ng-if="!main.slickLoaded">
+        <div ng-repeat="(index,artist) in main.lastArtists" class="col-xs-3">
+          <a href="#!/" ng-click="main.artist.name = artist.input;main.getArtist();" >
             <img ng-src="{{artist.thumb_url}}" class="img-thumbnail">
-            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch($index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
+            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch(index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
           </a>
-          <br>
         </div>
+        </slick>
       </div>
     </div>
 
@@ -102,6 +104,8 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+    <script src="bower_components/slick-carousel/slick/slick.js"></script>
+    <script src="bower_components/angular-slick-carousel/dist/angular-slick.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
