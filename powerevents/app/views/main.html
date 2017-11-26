@@ -45,7 +45,7 @@
         <div class="col-md-12 text-center">
           <a ng-if="main.artist.content.facebook_page_url" href="{{main.artist.content.facebook_page_url}}" class="btn btn-primary" target="_blank"><i class="fa fa-facebook"></i></a> 
           <span class="hidden-xs">&nbsp; &nbsp;</span>
-          <button class="btn btn-default" ng-click="main.getNextEvents()" target="_blank"><i class="fa fa-calendar"></i> See next events</button>
+          <button class="btn btn-default" ng-click="main.getNextEvents()" target="_blank"><i class="fa fa-calendar"></i> Upcoming events</button>
           <span class="hidden-xs">&nbsp; &nbsp;</span>
           <br class="hidden-md hidden-lg">
           <a href="{{main.artist.content.url}}" target="_blank">See in<img src="images/bandsintown-logo.svg" height="30px"></a>
@@ -59,7 +59,7 @@
     <div class="col-md-12">
       <div ng-if="main.artist.events.length > 0">
       <br>
-      <h3 class="text-default text-center"><i class="fa fa-calendar"></i> Next events of {{main.artist.content.name}}</h3>
+      <h3 class="text-default text-center"><i class="fa fa-calendar"></i> upcoming {{main.artist.content.name}} events</h3>
       <br>
         <table class="table" ng-if="main.artist.events.length > 0">
           <thead>
