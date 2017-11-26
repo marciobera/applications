@@ -52,15 +52,14 @@
 
     <div class="container">
     <div ng-view=""></div>
-
     <div class="marketing" ng-if="main.lastArtists.length > 0">
-      <h3>Latest searches</h3>
+      <h3>Latest searches <small class="pull-right"><a href="" ng-click="main.removeAllCache();"><i class="fa fa-trash"></i> delete all</a></small></h3>
       <hr>
       <slick class="row" settings="main.slickConfig" ng-if="!main.slickLoaded">
-        <div ng-repeat="(index,artist) in main.lastArtists" class="col-xs-3">
+        <div ng-repeat="artist in main.lastArtists track by $index" class="col-xs-3">
           <a href="#!/" ng-click="main.artist.name = artist.input;main.getArtist();" >
             <img ng-src="{{artist.thumb_url}}" class="img-thumbnail">
-            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch(index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
+            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch($index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
           </a>
         </div>
         </slick>
@@ -77,7 +76,6 @@
         <br>  
       </div>
     </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

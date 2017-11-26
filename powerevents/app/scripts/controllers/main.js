@@ -81,6 +81,7 @@ angular.module('eventsApp')
         return false;
       }
 
+    
       var _cacheArtist = $cookies.getObject(main.artist.name);
 
       if(_cacheArtist){
@@ -95,6 +96,18 @@ angular.module('eventsApp')
 
     	$http.get(url + main.artist.name, config).
     	then(function(response){
+
+              //creating indices of input value
+        var _getInputs = $cookies.getObject('input');
+        console.log(_getInputs);
+        if(_.isUndefined(_getInputs)){
+          $cookies.putObject('input', [main.artist.name]);
+        }else{
+          if(_.indexOf(_getInputs, main.artist.name) < 0){
+            _getInputs.unshift(main.artist.name);
+            $cookies.putObject('input', _getInputs);
+          }
+        }
 
         main.artist.content = response.data;
         main.artist.content.facebook_iframe_url = main._getFacebookPageUrl(main.artist.content.facebook_page_url);
@@ -186,12 +199,12 @@ angular.module('eventsApp')
     main._lastArtists = function(){
       
       main.slickLoaded = true;
-      var itens = main.cookies.getAll();
-      delete itens._ga;
-      delete itens._gid;
-      delete itens._gat;
 
-      main.lastArtists = _.map(itens, function(item, key){ item = JSON.parse(item); item.input = key; return item; });
+      main.lastArtists = _.map($cookies.getObject('input'), function(item){
+        var _item = main.cookies.getObject(item);
+        _item.input = item;
+        return _item;
+      });
 
       $timeout(function () {
         main.slickLoaded = false;
@@ -201,11 +214,18 @@ angular.module('eventsApp')
 
     main._removeSearch = function(index){
       main.slickLoaded = true;
+      $cookies.putObject('input', _.without($cookies.getObject('input'), main.lastArtists[index].input));
       $cookies.remove(main.lastArtists[index].input);
       main.lastArtists.splice(index, 1);
       $timeout(function () {
         main.slickLoaded = false;
       });
+    }
+
+    main.removeAllCache = function(){
+      _.map($cookies.getObject('input'), function(item){ $cookies.remove(item); });
+      $cookies.remove('input');
+      main._lastArtists();
     }
 
     main.clearSearch(0);
