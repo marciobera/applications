@@ -8,10 +8,14 @@
  * Controller of the eventsApp
  */
 angular.module('eventsApp')
-  .controller('AboutCtrl', function () {
+  .controller('AboutCtrl', function ($scope) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+    var main = $scope.$parent.main;
+
+    main.clearSearch(0);
   });
