@@ -8,9 +8,10 @@
  * Controller of the eventsApp
  */
 angular.module('eventsApp')
-  .controller('MainCtrl', function ($http, $sce, $location, $rootScope, $cacheFactory, $cookies) {
+  .controller('MainCtrl', function ($http, $sce, $location, $rootScope, $cacheFactory, $cookies, $scope, $timeout) {
   	var main = this;
     main.loading = false;
+    main.slickLoaded = false;
     main.cookies = $cookies;
     main.lastArtists = [];
 
@@ -34,6 +35,16 @@ angular.module('eventsApp')
             },
             cache: cache
         };
+
+    main.slickConfig = {
+      "mobileFirst": true,
+      "slidesToShow": 3,
+      "slidesToScroll": 3, 
+      "prevArrow": "<button class='btn btn-default slick-prev'>&lsaquo;</button>",
+      "nextArrow": "<button class='btn btn-default slick-next'>&rsaquo;</button>",
+      infinite: false,
+      method: {}
+    };
 
     // methods
 
@@ -64,7 +75,9 @@ angular.module('eventsApp')
       main.clearSearch(0);
       if(!main.artist.name){
         main.clearSearch(1);
-        main.loading = false;
+        $timeout(function () {
+          main.loading = false;
+        });
         return false;
       }
 
@@ -73,7 +86,9 @@ angular.module('eventsApp')
       if(_cacheArtist){
         main.artist.content = _cacheArtist;
         main.artist.content.facebook_iframe_url = main._getFacebookPageUrl(main.artist.content.facebook_page_url);
-        main.loading = false;
+        $timeout(function () {
+          main.loading = false;
+        });
 
         return false;
       }
@@ -81,18 +96,22 @@ angular.module('eventsApp')
     	$http.get(url + main.artist.name, config).
     	then(function(response){
 
-        main.loading = false;
         main.artist.content = response.data;
         main.artist.content.facebook_iframe_url = main._getFacebookPageUrl(main.artist.content.facebook_page_url);
+        $timeout(function () {
+          main.loading = false;
+        });
 
         $cookies.putObject(main.artist.name, response.data);
 
     	},function (error){
         // console.log(error);
-        main.loading = false;
         main.artist.error.code = 1;
         main.artist.error.type = 'danger';
         main.artist.error.message = '<strong>Sorry</strong>, <em>' + main.artist.name + '</em> was not found. :(';
+        $timeout(function () {
+          main.loading = false;
+        });
       });
 
     }
@@ -107,15 +126,19 @@ angular.module('eventsApp')
         main.artist.error.code = 1;
         main.artist.error.type = 'warning';
         main.artist.error.message = '<strong>Please</strong>, set the artist name.';
-        main.loading = false;
+        $timeout(function () {
+          main.loading = false;
+        });
         return false;
       }
 
       var _getCache = cache.get(main.artist.name);
-
+      console.log(_getCache);
       if(_getCache){
-        main.artist.events = _getCache.events;
-        main.loading = false;
+        main.artist.events = _getCache;
+        $timeout(function () {
+          main.loading = false;
+        });
         return false;
       }
 
@@ -123,12 +146,14 @@ angular.module('eventsApp')
       .then(function(response){
         console.log(response);
         
-        main.loading = false;
+        $timeout(function () {
+          main.loading = false;
+        });
         
         if(response.data.length > 0){
           
           main.artist.events = response.data;
-          cache.put(main.artist.name, main.artist);
+          cache.put(main.artist.name, response.data);
 
         }else{
           main.artist.error.code = 1;
@@ -157,26 +182,30 @@ angular.module('eventsApp')
       }
     }
 
-    main._lastArtists = function(){
 
-      main.lastArtists = [];
+    main._lastArtists = function(){
+      
+      main.slickLoaded = true;
       var itens = main.cookies.getAll();
       delete itens._ga;
       delete itens._gid;
       delete itens._gat;
 
-      angular.forEach(itens, function(item, key){
-        item = JSON.parse(item);
-        item.input = key;
-        main.lastArtists.push(item);
-        
+      main.lastArtists = _.map(itens, function(item, key){ item = JSON.parse(item); item.input = key; return item; });
+
+      $timeout(function () {
+        main.slickLoaded = false;
       });
+      
     }
 
     main._removeSearch = function(index){
-      // console.log(main.lastArtists[index]);
+      main.slickLoaded = true;
       $cookies.remove(main.lastArtists[index].input);
       main.lastArtists.splice(index, 1);
+      $timeout(function () {
+        main.slickLoaded = false;
+      });
     }
 
     main.clearSearch(0);
