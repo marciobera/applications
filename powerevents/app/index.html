@@ -51,7 +51,6 @@
         </div>
       </div>
     </div>
-
     <div class="container">
     <div ng-view=""></div>
     <div class="marketing" ng-if="main.lastArtists.length > 0">
@@ -59,7 +58,7 @@
       <hr>
       <slick class="row" settings="main.slickConfig" ng-if="!main.slickLoaded">
         <div ng-repeat="artist in main.lastArtists track by $index" class="col-xs-3">
-          <a href="#!/" ng-click="main.artist.name = artist.input;main.getArtist();" >
+          <a href="#!/" ng-click="main.artist.name = artist.name;main.getArtist();" >
             <img ng-src="{{artist.thumb_url}}" class="img-thumbnail">
             <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch($index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
           </a>
@@ -67,7 +66,6 @@
         </slick>
       </div>
     </div>
-
     <div class="footer">
       <div class="container">
         <p>

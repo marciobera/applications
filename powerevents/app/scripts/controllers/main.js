@@ -85,6 +85,7 @@ angular.module('eventsApp')
       var _cacheArtist = $cookies.getObject(main.artist.name);
 
       if(_cacheArtist){
+        main._getInputCache(_cacheArtist);
         main.artist.content = _cacheArtist;
         main.artist.content.facebook_iframe_url = main._getFacebookPageUrl(main.artist.content.facebook_page_url);
         $timeout(function () {
@@ -96,18 +97,18 @@ angular.module('eventsApp')
 
     	$http.get(url + main.artist.name, config).
     	then(function(response){
-
+        // console.log(typeof response.data.id);
               //creating indices of input value
-        var _getInputs = $cookies.getObject('input');
-        console.log(_getInputs);
-        if(_.isUndefined(_getInputs)){
-          $cookies.putObject('input', [main.artist.name]);
-        }else{
-          if(_.indexOf(_getInputs, main.artist.name) < 0){
-            _getInputs.unshift(main.artist.name);
-            $cookies.putObject('input', _getInputs);
-          }
-        }
+        main._getInputCache(response.data);
+        // _.map($cookies.get('input'), function(item){
+        //   if($cookies.getObject(item).id == response.data.id){
+        //     $cookies.put('input') = $cookies.get('input').slice(item, 1);
+        //     $timeout(function () {
+        //       main.loading = false;
+        //     });
+        //     return false;
+        //   }
+        // });
 
         main.artist.content = response.data;
         main.artist.content.facebook_iframe_url = main._getFacebookPageUrl(main.artist.content.facebook_page_url);
@@ -201,9 +202,7 @@ angular.module('eventsApp')
       main.slickLoaded = true;
 
       main.lastArtists = _.map($cookies.getObject('input'), function(item){
-        var _item = main.cookies.getObject(item);
-        _item.input = item;
-        return _item;
+        return item;
       });
 
       $timeout(function () {
@@ -212,10 +211,26 @@ angular.module('eventsApp')
       
     }
 
+    main._getInputCache = function(item){
+      var _getInputs = $cookies.getObject('input');
+        // console.log(_getInputs);
+        console.log($cookies.get('input'));
+        if(_.isUndefined(_getInputs)){
+          // console.log('isUndefined');
+          $cookies.putObject('input', [item]);
+        }else
+        if(!_.findWhere(_getInputs, {id: item.id})){
+          // console.log('!isUndefined');
+          _getInputs.unshift(item);
+          // console.log(_getInputs);
+          $cookies.putObject('input', _getInputs);
+        }
+    }
+
     main._removeSearch = function(index){
       main.slickLoaded = true;
-      $cookies.putObject('input', _.without($cookies.getObject('input'), main.lastArtists[index].input));
-      $cookies.remove(main.lastArtists[index].input);
+      $cookies.putObject('input', _.without($cookies.getObject('input'), main.lastArtists[index].id));
+      $cookies.remove(main.lastArtists[index].id);
       main.lastArtists.splice(index, 1);
       $timeout(function () {
         main.slickLoaded = false;
