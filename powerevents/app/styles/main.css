@@ -158,3 +158,24 @@ ul.pagination li.disabled a, ul.pagination li.disabled a:hover, ul.pagination li
 .navbar-brand img{
   margin-top:-10px;
 }
+.slick-arrow{
+  position: absolute;
+  top:32%;
+  z-index: 99;
+  font-size:32px;
+}
+@media screen and (max-width: 735px) {
+  .slick-arrow{
+    top:23%;
+    font-size:20px;
+  }
+}
+.btn.slick-prev{
+  left:-9px;
+}
+.btn.slick-next{
+  right:-10px;
+}
+.btn.slick-disabled{
+  opacity: 0;
+}
