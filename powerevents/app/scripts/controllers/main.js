@@ -227,11 +227,11 @@ angular.module('eventsApp')
         }
     }
 
-    main._removeSearch = function(index){
+    main._removeSearch = function(id){
       main.slickLoaded = true;
-      $cookies.putObject('input', _.without($cookies.getObject('input'), main.lastArtists[index].id));
-      $cookies.remove(main.lastArtists[index].id);
-      main.lastArtists.splice(index, 1);
+      $cookies.putObject('input', _.reject($cookies.getObject('input'), {id: id}));
+      $cookies.remove(id);
+      main._lastArtists();
       $timeout(function () {
         main.slickLoaded = false;
       });

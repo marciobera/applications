@@ -60,7 +60,7 @@
         <div ng-repeat="artist in main.lastArtists track by $index" class="col-xs-3">
           <a href="#!/" ng-click="main.artist.name = artist.name;main.getArtist();" >
             <img ng-src="{{artist.thumb_url}}" class="img-thumbnail">
-            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch($index)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
+            <p><strong>{{artist.name}} <a href="javascript:;" ng-click="main._removeSearch(artist.id)" class="pull-right"><i class="fa fa-trash"></i></a></strong></p>
           </a>
         </div>
         </slick>
