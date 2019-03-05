@@ -164,7 +164,6 @@ class App extends Component {
           <div className="form">
             <form>
               <h2 className="title">Let’s find your ideal car {loading}</h2>
-              {loader}
               <label htmlFor="search_term" title="Pick Up Location">Pick-up Location</label>
               <Autosuggest
                 suggestions={results}
@@ -176,6 +175,7 @@ class App extends Component {
                 highlightFirstSuggestion={true}
                 inputProps={inputProps}
               />
+              {loader}
               {
                 noSuggestions && shouldRenderSuggestions &&
                   <div className="no-results">
