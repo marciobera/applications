@@ -93,10 +93,9 @@ class App extends Component {
 
     API.get(`FTSAutocomplete.do?solrIndex=fts_en&solrRows=${max_results}&solrTerm=${value}`)
       .then(res => {
-        if(res.data.results.docs.length > 0){
+        if(res.data.results && res.data.results.docs.length > 0){
           this.setResults(res.data.results.docs);
         }
-        console.log(res.data.results);
         this.setLoading(false);
       })
   }
