@@ -156,7 +156,7 @@ class App extends Component {
               {loader}
               <label htmlFor="search_term" title="Pick Up Location">Pick-up Location</label>
               <Autosuggest
-                suggestions={search_term.length > 1 ? results : []}
+                suggestions={results}
                 onSuggestionsFetchRequested={this.handleSubmit}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
