@@ -140,12 +140,17 @@ class App extends Component {
       onChange: this.onChange
     };
 
+    const loader = loading ? (
+      <img className="loader" src="https://cdn2.rcstatic.com/images/site_graphics/newsite/preloader64.gif" />
+    ) : '';
+
     return (
       <div className="App">
         <header className="App-header">
           <div className="form">
             <form>
               <h2 className="title">Let’s find your ideal car {loading}</h2>
+              {loader}
               <label htmlFor="search_term" title="Pick Up Location">Pick-up Location</label>
               <Autosuggest
                 suggestions={search_term.length > 1 ? results : []}

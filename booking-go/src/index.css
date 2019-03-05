@@ -9,6 +9,7 @@ body {
 }
 
 .form {
+  position: relative;
   background-color: #f2cd60;
   border-bottom: 2px solid #d9b039;
   padding: 22px;
@@ -176,3 +177,11 @@ body {
   line-height: 45px;
 }
 
+.loader{
+  position: absolute;
+  width:36px;
+  z-index:9;
+  right:0px;
+  margin-right:25px;
+  margin-top:35px;
+}
