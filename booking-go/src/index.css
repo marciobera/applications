@@ -23,6 +23,10 @@ body {
   box-sizing: border-box;
 }
 
+.form form{
+  position: relative;
+}
+
 .form .title {
   padding: 0px;
   margin: 10px 0px 5px 0px;
@@ -187,4 +191,26 @@ body {
   .loader{
     margin-top:30px;
   }
+}
+
+.no-results{
+  position: absolute;
+  padding:10px 9px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  opacity: 1;
+  color: #989898;
+  font-style: italic;
+  background:#fff;
+  border-radius:3px;
+  border-bottom: 1px solid #eaeaea;
+  cursor: default !important;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.4);
+  margin:auto 1px;
+  font-weight: 100;
+  font-size:14px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
 }

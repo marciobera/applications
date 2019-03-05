@@ -62,7 +62,6 @@ const shouldRenderSuggestions = value => {
   return value.trim().length > 1;
 }
 
-
 class App extends Component {
 
   constructor(props){
@@ -72,12 +71,15 @@ class App extends Component {
       search_term: '',
       max_results: 6,
       results: [],
-      loading: false
+      loading: false,
+      reason: null
     };
 
   }
 
-  handleSubmit = ({ value }) => {
+  handleSubmit = ({ value, reason }) => {
+
+    this.setReason(reason);
 
     const escapedValue = escapeRegexCharacters(value.trim());
   
@@ -116,6 +118,12 @@ class App extends Component {
     });
   }
 
+  setReason = reason => {
+    this.setState({
+      reason
+    });
+  }
+
   setResults = results => {
     this.setState({
       results
@@ -125,14 +133,15 @@ class App extends Component {
   // Autosuggest will call this function every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
     this.setState({
-      results: []
+      results: [],
+      reason: null
     });
   };
 
 
   render() {
 
-    const { search_term, results, loading } = this.state;
+    const { search_term, results, reason, loading } = this.state;
 
     const inputProps = {
       placeholder: 'city, airport, station, region, district...',
@@ -144,8 +153,10 @@ class App extends Component {
     };
 
     const loader = loading ? (
-      <img className="loader" src="https://cdn2.rcstatic.com/images/site_graphics/newsite/preloader64.gif" />
+      <img className="loader" alt="Loading" src="https://cdn2.rcstatic.com/images/site_graphics/newsite/preloader64.gif" />
     ) : '';
+
+    const noSuggestions = search_term.length > 1 && !loading && results.length === 0 && reason ? true : false;
 
     return (
       <div className="App">
@@ -165,6 +176,12 @@ class App extends Component {
                 highlightFirstSuggestion={true}
                 inputProps={inputProps}
               />
+              {
+                noSuggestions && shouldRenderSuggestions &&
+                  <div className="no-results">
+                  No results found
+                  </div>
+              }
             </form>
           </div>
         </header>
