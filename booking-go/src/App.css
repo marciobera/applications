@@ -1,5 +1,7 @@
 .App-header {
-  background-color: #282c34;
+  background-image: url('https://www.rentalcars.com/images/site_graphics/newsite/hero/lp-hero-gb-v2.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
