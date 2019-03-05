@@ -58,6 +58,10 @@ const escapeRegexCharacters = str => {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+const shouldRenderSuggestions = value => {
+  return value.trim().length > 1;
+}
+
 
 class App extends Component {
 
@@ -156,6 +160,7 @@ class App extends Component {
                 onSuggestionsFetchRequested={this.handleSubmit}
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
+                shouldRenderSuggestions={shouldRenderSuggestions}
                 renderSuggestion={renderSuggestion}
                 highlightFirstSuggestion={true}
                 inputProps={inputProps}
