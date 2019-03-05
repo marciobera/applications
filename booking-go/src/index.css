@@ -47,3 +47,9 @@ body {
 .form input::placeholder {
   color: #aaa;
 }
+
+@media only screen and (max-width: 600px) {
+  .form {
+    max-width: 600px;
+  }
+}
