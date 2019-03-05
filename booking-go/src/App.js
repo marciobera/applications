@@ -157,6 +157,7 @@ class App extends Component {
                 onSuggestionsClearRequested={this.onSuggestionsClearRequested}
                 getSuggestionValue={getSuggestionValue}
                 renderSuggestion={renderSuggestion}
+                highlightFirstSuggestion={true}
                 inputProps={inputProps}
               />
             </form>
