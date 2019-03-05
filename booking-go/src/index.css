@@ -8,4 +8,42 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.form {
+  background-color: #f2cd60;
+  border-bottom: 2px solid #d9b039;
+  padding: 22px;
+  color: #000;
+  width: 100%;
+  max-width: 500px;
+  min-width: 100px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+  box-sizing: border-box;
+}
+
+.form .title {
+  padding: 0px;
+  margin: 10px 0px 5px 0px;
+  font-size: 32px;
+}
+
+.form label {
+  font-size: 14px;
+  font-weight: 100;
+  margin: 0px;
+}
+
+.form input {
+  font-size: 14px;
+  padding: 12px;
+  width: 100%;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+  border: 1px solid #a9a9a9;
+}
+
+.form input::placeholder {
+  color: #aaa;
 }
